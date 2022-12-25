@@ -1,0 +1,5 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/NetworkProject">
+<file alias="main.qml">/home/hosein/Desktop/Project/cenetwork/NetworkProject/main.qml</file>
+</qresource>
+</RCC>
