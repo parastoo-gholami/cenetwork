@@ -52,8 +52,10 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../NetworkProject/main.cpp qrc_qmake_resources.cpp
+SOURCES       = ../NetworkProject/main.cpp qrc_Resources.cpp \
+		qrc_qmake_resources.cpp
 OBJECTS       = main.o \
+		qrc_Resources.o \
 		qrc_qmake_resources.o
 DIST          = ../../../../Qt/6.4.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/6.4.1/gcc_64/mkspecs/common/unix.conf \
@@ -186,6 +188,7 @@ DIST          = ../../../../Qt/6.4.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/6.4.1/gcc_64/mkspecs/features/qt_config.prf \
 		../../../../Qt/6.4.1/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../../Qt/6.4.1/gcc_64/mkspecs/features/spec_post.prf \
+		../NetworkProject/.qmake.stash \
 		../../../../Qt/6.4.1/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/6.4.1/gcc_64/mkspecs/features/toolchain.prf \
 		../../../../Qt/6.4.1/gcc_64/mkspecs/features/default_pre.prf \
@@ -348,6 +351,7 @@ Makefile: ../NetworkProject/NetworkProject.pro ../../../../Qt/6.4.1/gcc_64/mkspe
 		../../../../Qt/6.4.1/gcc_64/mkspecs/features/qt_config.prf \
 		../../../../Qt/6.4.1/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../../Qt/6.4.1/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../../Qt/6.4.1/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/6.4.1/gcc_64/mkspecs/features/toolchain.prf \
 		../../../../Qt/6.4.1/gcc_64/mkspecs/features/default_pre.prf \
@@ -368,6 +372,7 @@ Makefile: ../NetworkProject/NetworkProject.pro ../../../../Qt/6.4.1/gcc_64/mkspe
 		../../../../Qt/6.4.1/gcc_64/mkspecs/features/yacc.prf \
 		../../../../Qt/6.4.1/gcc_64/mkspecs/features/lex.prf \
 		../NetworkProject/NetworkProject.pro \
+		../NetworkProject/Resources.qrc \
 		qmake_resources.qrc \
 		../../../../Qt/6.4.1/gcc_64/lib/libQt6Quick.prl \
 		../../../../Qt/6.4.1/gcc_64/lib/libQt6OpenGL.prl \
@@ -508,6 +513,7 @@ Makefile: ../NetworkProject/NetworkProject.pro ../../../../Qt/6.4.1/gcc_64/mkspe
 ../../../../Qt/6.4.1/gcc_64/mkspecs/features/qt_config.prf:
 ../../../../Qt/6.4.1/gcc_64/mkspecs/linux-g++/qmake.conf:
 ../../../../Qt/6.4.1/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../../Qt/6.4.1/gcc_64/mkspecs/features/exclusive_builds.prf:
 ../../../../Qt/6.4.1/gcc_64/mkspecs/features/toolchain.prf:
 ../../../../Qt/6.4.1/gcc_64/mkspecs/features/default_pre.prf:
@@ -528,6 +534,7 @@ Makefile: ../NetworkProject/NetworkProject.pro ../../../../Qt/6.4.1/gcc_64/mkspe
 ../../../../Qt/6.4.1/gcc_64/mkspecs/features/yacc.prf:
 ../../../../Qt/6.4.1/gcc_64/mkspecs/features/lex.prf:
 ../NetworkProject/NetworkProject.pro:
+../NetworkProject/Resources.qrc:
 qmake_resources.qrc:
 ../../../../Qt/6.4.1/gcc_64/lib/libQt6Quick.prl:
 ../../../../Qt/6.4.1/gcc_64/lib/libQt6OpenGL.prl:
@@ -550,7 +557,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents qmake_resources.qrc $(DISTDIR)/
+	$(COPY_FILE) --parents ../NetworkProject/Resources.qrc qmake_resources.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Qt/6.4.1/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../NetworkProject/main.cpp $(DISTDIR)/
 
@@ -576,11 +583,26 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all: qrc_qmake_resources.cpp
+compiler_rcc_make_all: qrc_Resources.cpp qrc_qmake_resources.cpp
 compiler_rcc_clean:
-	-$(DEL_FILE) qrc_qmake_resources.cpp
+	-$(DEL_FILE) qrc_Resources.cpp qrc_qmake_resources.cpp
+qrc_Resources.cpp: ../NetworkProject/Resources.qrc \
+		../../../../Qt/6.4.1/gcc_64/libexec/rcc \
+		../NetworkProject/sun.png \
+		../NetworkProject/night.png
+	/home/hosein/Qt/6.4.1/gcc_64/libexec/rcc -name Resources --no-zstd ../NetworkProject/Resources.qrc -o qrc_Resources.cpp
+
 qrc_qmake_resources.cpp: qmake_resources.qrc \
 		../../../../Qt/6.4.1/gcc_64/libexec/rcc \
+		../NetworkProject/ModeButton.qml \
+		../NetworkProject/MyGroupbox.qml \
+		../NetworkProject/Signup_link.qml \
+		../NetworkProject/TxtField_in_groupbox.qml \
+		../NetworkProject/Submit_btn.qml \
+		../NetworkProject/HeadText.qml \
+		../NetworkProject/Circles.qml \
+		../NetworkProject/Txt_in_groupbox.qml \
+		../NetworkProject/MyRow.qml \
 		../NetworkProject/main.qml
 	/home/hosein/Qt/6.4.1/gcc_64/libexec/rcc -name qmake_resources --no-zstd qmake_resources.qrc -o qrc_qmake_resources.cpp
 
@@ -749,6 +771,9 @@ main.o: ../NetworkProject/main.cpp ../../../../Qt/6.4.1/gcc_64/include/QtGui/QGu
 		../../../../Qt/6.4.1/gcc_64/include/QtQml/qqmlerror.h \
 		../../../../Qt/6.4.1/gcc_64/include/QtQml/qqmlabstracturlinterceptor.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../NetworkProject/main.cpp
+
+qrc_Resources.o: qrc_Resources.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_Resources.o qrc_Resources.cpp
 
 qrc_qmake_resources.o: qrc_qmake_resources.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_qmake_resources.o qrc_qmake_resources.cpp
