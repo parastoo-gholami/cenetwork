@@ -597,6 +597,9 @@ qrc_qmake_resources.cpp: qmake_resources.qrc \
 		../../../../Qt/6.4.1/gcc_64/libexec/rcc \
 		../NetWork_Project/Groupbox.qml \
 		../NetWork_Project/MyTextField.qml \
+		../NetWork_Project/Signup.qml \
+		../NetWork_Project/Signup_gb.qml \
+		../NetWork_Project/SignupTxt.qml \
 		../NetWork_Project/Header.qml \
 		../NetWork_Project/LoginTxt.qml \
 		../NetWork_Project/main.qml \

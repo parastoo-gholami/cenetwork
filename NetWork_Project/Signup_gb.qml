@@ -39,15 +39,21 @@ Rectangle {
         }
         Header {
         }
-        LoginTxt {
+        SignupTxt {
+
         }
         MyTextField {
             name : "UserName"
             ech : 0
+            x : 50; y : 250; z : 1
+        }
+        MyTextField {
+            name : "Email Address"
+            ech : 0
             x : 50; y : 350; z : 1
         }
         MyTextField {
-            name : "PassWord"
+            name : "Create a PassWord"
             ech : 2
             x : 50; y : 450; z : 1
         }
@@ -57,7 +63,7 @@ Rectangle {
             height: 40
             x : 60; y : 547; z : 1
             c : internal1.hoverColor
-            t : "Sign Up"
+            t : "Sign In"
             ct : internal1.hoverColortxt
             QtObject
             {
@@ -72,16 +78,11 @@ Rectangle {
                                          }
 
             }
-//            Signup{
-//                id : anotherpage
-//                visible: false
-//            }
             onButtonClicked: {
-                var component = Qt.createComponent("Signup.qml");
+                var component = Qt.createComponent("main.qml");
                 var win = component.createObject(Window);
-//              win.closing.connect(function() { console.log('do something') })
-                win.show();
-                rootid.close()
+                win.show()
+                signup_window.close()
             }
         }
         MyButton {

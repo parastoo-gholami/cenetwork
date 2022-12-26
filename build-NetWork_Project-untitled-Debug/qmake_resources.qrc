@@ -6,5 +6,8 @@
 <file alias="Header.qml">/home/hosein/Desktop/Project/cenetwork/NetWork_Project/Header.qml</file>
 <file alias="LoginTxt.qml">/home/hosein/Desktop/Project/cenetwork/NetWork_Project/LoginTxt.qml</file>
 <file alias="MyTextField.qml">/home/hosein/Desktop/Project/cenetwork/NetWork_Project/MyTextField.qml</file>
+<file alias="Signup.qml">/home/hosein/Desktop/Project/cenetwork/NetWork_Project/Signup.qml</file>
+<file alias="Signup_gb.qml">/home/hosein/Desktop/Project/cenetwork/NetWork_Project/Signup_gb.qml</file>
+<file alias="SignupTxt.qml">/home/hosein/Desktop/Project/cenetwork/NetWork_Project/SignupTxt.qml</file>
 </qresource>
 </RCC>

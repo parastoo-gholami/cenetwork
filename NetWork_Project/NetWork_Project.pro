@@ -9,6 +9,9 @@ resources.files += MyButton.qml
 resources.files += Header.qml
 resources.files += LoginTxt.qml
 resources.files += MyTextField.qml
+resources.files += Signup.qml
+resources.files += Signup_gb.qml
+resources.files += SignupTxt.qml
 resources.prefix = /$${TARGET}
 RESOURCES += resources \
     Resources.qrc
