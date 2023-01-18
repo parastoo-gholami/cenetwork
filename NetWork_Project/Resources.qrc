@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>colorful-abstract-nebula-space-background.jpg</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <file>power.png</file>
+        <file>messenger-64.png</file>
+        <file>send-svgrepo-com(2).svg</file>
+        <file>search-s-svgrepo-com.svg</file>
+        <file>magnifying-glass.png</file>
+        <file>search.png</file>
+        <file>search(1).png</file>
+        <file>check.png</file>
+        <file>read.png</file>
+        <file>2058131601582004490-128.png</file>
+        <file>attachment.png</file>
+        <file>image.png</file>
+    </qresource>
+    <qresource prefix="/"/>
+</RCC>
