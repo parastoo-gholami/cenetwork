@@ -12,7 +12,8 @@ class tcpClient : public QObject
 public:
     explicit tcpClient(QObject *parent = nullptr);
 signals:
-    void newMessage(const QByteArray &message);
+    void login_message(const QByteArray &message);
+    void signup_message(const QByteArray &message);
     void get_logged_in_UserName(QByteArray liu);
     void get_chatslist(QByteArray chtslist);
     void get_Message(QByteArray mr);
@@ -33,6 +34,7 @@ public slots:
     void selectReceiver(QString rcvr);
     void select_chat(QString sc);
     void send_signal_to_get_chats(QString whosend,QString toWho);
+    void send_signal_to_get_attachment(QString name,QString path);
     QString get_file_size();
     QString get_selected_chat();
 //    void onUpdateChatList(QString sender,QString newUser);

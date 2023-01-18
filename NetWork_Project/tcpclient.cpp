@@ -49,10 +49,11 @@ void tcpClient::onReadyRead()
     buffer = client->readAll();
     header = QString ::fromStdString(buffer.mid(0,128).toStdString()).split('|');
     buffer = buffer.mid(128);
+    qInfo() << header[0];
     //qInfo() << header << "," << QString::fromStdString(buffer.toStdString());
     if (header[0] == "Sack")
     {
-        emit newMessage(header[0].toUtf8());
+        emit signup_message(header[0].toUtf8());
     }
     else if (header[0] == "Lack")
     {
@@ -70,17 +71,17 @@ void tcpClient::onReadyRead()
             chatslist_info = QString::fromStdString(buffer.toStdString()).split('|')[1];
         }
         logged_in_UserName = sign_in_username.toUtf8();
-        emit newMessage(header[0].toUtf8());
+        emit login_message(header[0].toUtf8());
         emit get_logged_in_UserName(logged_in_UserName);
         emit get_chatslist(chatslist_info.toUtf8());
     }
     else if (header[0] == "Snack")
     {
-        emit newMessage(buffer);
+        emit signup_message(buffer);
     }
     else if (header[0] == "Lnack")
     {
-        emit newMessage(buffer);
+        emit login_message(buffer);
     }
     else if (header[0] == "search")
     {
@@ -111,6 +112,19 @@ void tcpClient::onReadyRead()
     else if (header[0] == "i_am_offline")
     {
         emit new_offline_user(buffer);
+    }
+    else if (header[0].split(',')[0] == "get_file")
+    {
+        qInfo() << "start";
+        //QString name = QString::fromStdString(buffer.toStdString()).split(',')[0];
+        //QString data = QString::fromStdString(buffer.toStdString()).split(',')[1];
+        QFile file(header[0].split(',')[1]);
+        if (file.open(QIODevice::WriteOnly))
+        {
+            file.write(buffer);
+            file.close();
+            qInfo() << "done";
+        }
     }
 }
 void tcpClient::onSearchBoxClicked(QString txt)
@@ -200,6 +214,16 @@ void tcpClient::send_attachment(QString filepath,QString sender,QString towho,QS
     {
         qInfo() << "failed to send atch";
     }
+}
+void tcpClient::send_signal_to_get_attachment(QString name,QString path)
+{
+    QByteArray header;
+    header.prepend(QString("fileType:get_attchmnt,filename:%1|").arg(name).toUtf8());
+    header.resize(128);
+    QByteArray byteArray = path.toUtf8();
+    byteArray.prepend(header);
+    socket.write(byteArray);
+    socket.flush();
 }
 QString tcpClient::get_file_size()
 {

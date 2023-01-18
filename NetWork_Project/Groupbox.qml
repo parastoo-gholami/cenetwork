@@ -11,15 +11,15 @@ Rectangle {
     height : rootid.height - 300
     Connections {
         target: client
-        function onNewMessage(ba)
+        function onLogin_message(ba)
         {
             message = ba + ""
             if (message === "Lack")
             {
                 console.log("ok");
-                var component1 = Qt.createComponent("Messanger.qml");
-                var win1 = component1.createObject(Window);
-                win1.show();
+                let component1 = Qt.createComponent("Messanger.qml");
+                let win1 = component1.createObject(Window);
+                win1.show()
                 rootid.close()
             }
             else
@@ -97,16 +97,11 @@ Rectangle {
                                          }
 
             }
-//            Signup{
-//                id : anotherpage
-//                visible: false
-//            }
             onButtonClicked: {
-                var component = Qt.createComponent("Signup.qml");
-                var win = component.createObject(Window);
-//              win.closing.connect(function() { console.log('do something') })
+                let component = Qt.createComponent("Signup.qml");
+                let win = component.createObject(Window);
                 win.show();
-                rootid.close()
+                rootid.hide()
             }
         }
         MyButton {

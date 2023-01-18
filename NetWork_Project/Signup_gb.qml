@@ -10,17 +10,17 @@ Rectangle {
     property string em: emailtxtfield.content
     Connections {
         target: client
-        function onNewMessage(ba)
+        function onSignup_message(ba)
         {
             message = ba + ""
             if (message === "Sack")
             {
                 console.log("ok");
-                var component = Qt.createComponent("main.qml");
-                var win = component.createObject(Window);
-//              win.closing.connect(function() { console.log('do something') })
-                win.show();
-                signup_window.close()
+                usernametxtfield.name = ""
+                passwordtxtfield.name = ""
+                emailtxtfield.name = ""
+                signup_window.close();
+                rootid.show()
             }
             else
             {
@@ -105,9 +105,10 @@ Rectangle {
 
             }
             onButtonClicked: {
-                var component = Qt.createComponent("main.qml");
-                var win = component.createObject(Window);
-                win.show()
+//                let component = Qt.createComponent("main.qml");
+//                let win = component.createObject(Window);
+//                win.show()
+                rootid.show()
                 signup_window.close()
             }
         }
