@@ -4,7 +4,7 @@ SOURCES += \
         main.cpp \
         tcpclient.cpp
 
-resources.files = main.qml 
+resources.files = main.qml
 resources.files += Groupbox.qml
 resources.files += MyButton.qml
 resources.files += Header.qml
@@ -32,6 +32,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES +=
-
 HEADERS += \
     tcpclient.h

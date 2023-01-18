@@ -24,7 +24,7 @@ Rectangle {
             }
             else
             {
-                console.log("failed!");
+                console.log("failed!!!!");
             }
         }
     }
